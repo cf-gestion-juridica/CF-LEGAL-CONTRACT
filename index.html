@@ -1,162 +1,155 @@
 <!DOCTYPE html>
-<html lang="es" class="scroll-smooth">
+<html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CF Legal Contract | Asesorías Jurídicas y Acompañamiento Legal</title>
-  <script src="https://tailwindcss.com"></script>
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; }
     h1, h2, .serif { font-family: 'Playfair Display', serif; }
+    a { text-decoration: none; }
+
+    /* Header */
+    header { background-color: #020617; color: #ffffff; position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #1e293b; box-shadow: 0 4px 12px rgba(0,0,0,0.15); }
+    .nav-container { max-width: 1150px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+    .logo-box { display: flex; align-items: center; gap: 12px; color: #ffffff; }
+    .logo-icon { width: 42px; height: 42px; border-radius: 8px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center; color: #fbbf24; font-weight: 700; font-size: 18px; }
+    .logo-title { font-weight: 700; font-size: 17px; letter-spacing: 0.5px; display: block; line-height: 1.1; }
+    .logo-sub { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 1.5px; }
+    nav { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
+    nav a { color: #cbd5e1; transition: color 0.2s; }
+    nav a:hover { color: #fbbf24; }
+    .btn-portal { background-color: #f59e0b; color: #020617; font-weight: 600; font-size: 13px; padding: 10px 18px; border-radius: 8px; transition: background 0.2s; }
+    .btn-portal:hover { background-color: #fbbf24; }
+
+    /* Hero */
+    .hero { background: linear-gradient(135deg, #020617 0%, #0f172a 55%, #1e293b 100%); color: #ffffff; padding: 90px 24px; text-align: center; }
+    .hero-inner { max-width: 900px; margin: 0 auto; }
+    .badge { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(245, 158, 11, 0.12); border: 1px solid rgba(245, 158, 11, 0.35); color: #fbbf24; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+    .hero h1 { font-size: clamp(2rem, 4.5vw, 3.4rem); line-height: 1.2; margin-bottom: 22px; }
+    .hero p { color: #cbd5e1; font-size: 18px; max-width: 720px; margin: 0 auto 38px; font-weight: 300; }
+    .hero-buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    .btn-wa { background-color: #059669; color: #ffffff; font-weight: 600; padding: 14px 28px; border-radius: 12px; box-shadow: 0 8px 20px rgba(5, 150, 105, 0.3); transition: background 0.2s; }
+    .btn-wa:hover { background-color: #10b981; }
+    .btn-sec { background-color: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.22); color: #ffffff; font-weight: 500; padding: 14px 28px; border-radius: 12px; transition: background 0.2s; }
+    .btn-sec:hover { background-color: rgba(255,255,255,0.16); }
+
+    /* Servicios */
+    .section { max-width: 1150px; margin: 0 auto; padding: 80px 24px; }
+    .section-header { text-align: center; max-width: 650px; margin: 0 auto 54px; }
+    .section-tag { color: #d97706; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .section-header h2 { font-size: 34px; color: #0f172a; margin: 8px 0 14px; }
+    .section-header p { color: #475569; font-size: 15px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .card { background: #ffffff; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .card-num { width: 46px; height: 46px; border-radius: 12px; background: #0f172a; color: #fbbf24; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 18px; margin-bottom: 20px; }
+    .card h3 { font-size: 20px; color: #0f172a; margin-bottom: 12px; }
+    .card p { color: #475569; font-size: 14px; }
+
+    /* Diferenciales */
+    .dark-band { background-color: #0f172a; color: #ffffff; padding: 72px 24px; }
+    .split-grid { max-width: 1150px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; align-items: center; }
+    .dark-band h2 { font-size: 30px; margin: 10px 0 16px; }
+    .dark-band p { color: #cbd5e1; font-size: 15px; margin-bottom: 24px; }
+    .mini-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+    .mini-card { background: rgba(30, 41, 59, 0.85); padding: 20px; border-radius: 12px; border: 1px solid #334155; }
+    .mini-card h4 { color: #fbbf24; font-size: 15px; margin-bottom: 6px; }
+    .mini-card p { color: #cbd5e1; font-size: 13px; margin: 0; }
+
+    /* Contacto */
+    .contact-box { max-width: 850px; margin: 0 auto; padding: 80px 24px; text-align: center; }
+    .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 22px; margin-top: 38px; }
+    .contact-card { background: #ffffff; padding: 28px; border-radius: 16px; border: 1px solid #e2e8f0; display: block; color: inherit; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: transform 0.2s, border-color 0.2s; }
+    .contact-card:hover { transform: translateY(-3px); border-color: #0f172a; }
+    .pill-wa { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 600; background: #ecfdf5; color: #047857; padding: 6px 14px; border-radius: 999px; }
+    .pill-mail { display: inline-block; margin-top: 12px; font-size: 12px; font-weight: 600; background: #f1f5f9; color: #1e293b; padding: 6px 14px; border-radius: 999px; }
+
+    /* Footer */
+    footer { background: #020617; color: #94a3b8; text-align: center; padding: 36px 24px; font-size: 13px; border-top: 1px solid #1e293b; }
+    @media (max-width: 640px) { nav { display: none; } }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body>
 
-  <!-- Barra de Navegación -->
-  <header class="bg-slate-950 text-white sticky top-0 z-50 border-b border-slate-800 shadow-md">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-4">
-      <a href="#" class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/40 flex items-center justify-center text-amber-400 font-bold text-lg serif">
-          CF
-        </div>
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo-box">
+        <div class="logo-icon serif">CF</div>
         <div>
-          <span class="font-bold text-lg tracking-wide block leading-none">CF LEGAL CONTRACT</span>
-          <span class="text-[11px] text-slate-400 uppercase tracking-widest">Asesoría & Gestión Jurídica</span>
+          <span class="logo-title">CF LEGAL CONTRACT</span>
+          <span class="logo-sub">Asesoría & Gestión Jurídica</span>
         </div>
       </a>
-
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#servicios" class="hover:text-amber-400 transition">Servicios</a>
-        <a href="#acompanamiento" class="hover:text-amber-400 transition">¿Por qué elegirnos?</a>
-        <a href="#contacto" class="hover:text-amber-400 transition">Contacto</a>
+      <nav>
+        <a href="#servicios">Servicios</a>
+        <a href="#acompanamiento">¿Por qué elegirnos?</a>
+        <a href="#contacto">Contacto</a>
       </nav>
-
-      <div class="flex items-center gap-3">
-        <a href="https://vercel.app" target="_blank" rel="noopener noreferrer"
-           class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition shadow-sm">
-          Portal de Expedientes
-        </a>
-      </div>
+      <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" class="btn-portal">
+        Portal de Expedientes
+      </a>
     </div>
   </header>
 
-  <!-- Portada Principal (Hero) -->
-  <section class="bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-white py-20 sm:py-28 px-4 sm:px-6 relative overflow-hidden">
-    <div class="max-w-5xl mx-auto text-center relative z-10">
-      <span class="inline-block py-1 px-3 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-semibold uppercase tracking-wider mb-6">
-        Respaldo Legal Integral en Colombia
-      </span>
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-        Asesorías jurídicas y acompañamiento en cada etapa de su proceso
-      </h1>
-      <p class="text-slate-300 text-base sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-light">
-        En <strong class="text-white font-medium">CF Legal Contract</strong> brindamos soluciones legales estratégicas, representación y seguimiento riguroso en procesos judiciales y trámites administrativos.
+  <section class="hero">
+    <div class="hero-inner">
+      <span class="badge">Respaldo Legal Integral en Colombia</span>
+      <h1>Asesorías jurídicas y acompañamiento en cada etapa de su proceso</h1>
+      <p>
+        En <strong style="color:#fff;">CF Legal Contract</strong> brindamos soluciones legales estratégicas, representación y seguimiento riguroso en procesos judiciales y trámites administrativos.
       </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <div class="hero-buttons">
         <!-- 573043896640 -->
-        <a href="https://wa.me."
-           target="_blank" rel="noopener noreferrer"
-           class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-7 py-3.5 rounded-xl transition flex items-center justify-center gap-2 shadow-lg">
-          <span>Escribir por WhatsApp</span>
+        <a href="https://wa.me." target="_blank" rel="noopener noreferrer" class="btn-wa">
+          Escribir por WhatsApp
         </a>
-
-        <a href="https://vercel.app" target="_blank" rel="noopener noreferrer"
-           class="w-full sm:w-auto bg-white/10 hover:bg-white/15 border border-white/20 text-white font-medium px-7 py-3.5 rounded-xl transition">
+        <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" class="btn-sec">
           Consultar mi Expediente en Línea
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Sección de Servicios -->
-  <section id="servicios" class="py-20 px-4 sm:px-6 max-w-6xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-14">
-      <span class="text-amber-600 font-semibold text-xs uppercase tracking-widest">Áreas de Práctica</span>
-      <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2 mb-4">Nuestros Servicios Jurídicos</h2>
-      <p class="text-slate-600 text-sm sm:text-base">
-        Acompañamiento personalizado tanto para personas naturales como para empresas, garantizando claridad y seguridad jurídica.
-      </p>
+  <section id="servicios" class="section">
+    <div class="section-header">
+      <span class="section-tag">Áreas de Práctica</span>
+      <h2>Nuestros Servicios Jurídicos</h2>
+      <p>Acompañamiento personalizado tanto para personas naturales como para empresas, garantizando claridad y seguridad jurídica.</p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      <!-- Servicio 1 -->
-      <div class="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center font-bold text-xl mb-5">01</div>
-        <h3 class="text-xl font-bold text-slate-900 mb-3">Asesoría Jurídica Integral</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">
-          Consultoría preventiva y estratégica para la toma de decisiones, análisis de riesgos legales, conceptos jurídicos y redacción o revisión de contratos.
-        </p>
+    <div class="grid-3">
+      <div class="card">
+        <div class="card-num">01</div>
+        <h3>Asesoría Jurídica Integral</h3>
+        <p>Consultoría preventiva y estratégica para la toma de decisiones, análisis de riesgos legales, conceptos jurídicos y redacción o revisión de contratos.</p>
       </div>
-
-      <!-- Servicio 2 -->
-      <div class="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center font-bold text-xl mb-5">02</div>
-        <h3 class="text-xl font-bold text-slate-900 mb-3">Acompañamiento en Procesos Legales</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">
-          Representación y seguimiento continuo desde el inicio hasta la culminación de procesos judiciales en áreas como Derecho Laboral, Civil, Familia y Comercial.
-        </p>
+      <div class="card">
+        <div class="card-num">02</div>
+        <h3>Acompañamiento en Procesos Legales</h3>
+        <p>Representación y seguimiento continuo desde el inicio hasta la culminación de procesos judiciales en áreas como Derecho Laboral, Civil, Familia y Comercial.</p>
       </div>
-
-      <!-- Servicio 3 -->
-      <div class="bg-white p-7 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition">
-        <div class="w-12 h-12 rounded-xl bg-slate-900 text-amber-400 flex items-center justify-center font-bold text-xl mb-5">03</div>
-        <h3 class="text-xl font-bold text-slate-900 mb-3">Trámites y Procesos Administrativos</h3>
-        <p class="text-slate-600 text-sm leading-relaxed">
-          Gestión ante entidades públicas y privadas, derechos de petición, recursos administrativos, tutelas, conciliaciones y reclamaciones formales.
-        </p>
+      <div class="card">
+        <div class="card-num">03</div>
+        <h3>Trámites y Procesos Administrativos</h3>
+        <p>Gestión ante entidades públicas y privadas, derechos de petición, recursos administrativos, tutelas, conciliaciones y reclamaciones formales.</p>
       </div>
     </div>
   </section>
 
-  <!-- Diferenciales -->
-  <section id="acompanamiento" class="bg-slate-900 text-white py-16 px-4 sm:px-6">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+  <section id="acompanamiento" class="dark-band">
+    <div class="split-grid">
       <div>
-        <span class="text-amber-400 font-semibold text-xs uppercase tracking-widest">Transparencia y Control</span>
-        <h2 class="text-3xl font-bold mt-2 mb-4">Seguimiento en tiempo real de sus procesos</h2>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6">
-          Sabemos lo importante que es estar informado sobre el avance de su caso. Por eso, nuestros clientes cuentan con acceso exclusivo a nuestra plataforma digital para verificar el estado y radicado de sus expedientes.
-        </p>
-        <a href="https://vercel.app" target="_blank" rel="noopener noreferrer"
-           class="inline-block bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm px-6 py-3 rounded-lg transition">
+        <span style="color:#fbbf24; font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:1.5px;">Transparencia y Control</span>
+        <h2>Seguimiento en tiempo real de sus procesos</h2>
+        <p>Sabemos lo importante que es estar informado sobre el avance de su caso. Por eso, nuestros clientes cuentan con acceso exclusivo a nuestra plataforma digital para verificar el estado y radicado de sus expedientes.</p>
+        <a href="https://vercel.app" target="_blank" rel="noopener noreferrer" class="btn-portal">
           Ingresar al Portal de Clientes →
         </a>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
-          <h4 class="font-semibold text-amber-400 mb-1">Atención Directa</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">Comunicación ágil por WhatsApp y correo electrónico durante todo el proceso.</p>
-        </div>
-        <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
-          <h4 class="font-semibold text-amber-400 mb-1">Gestión Documental</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">Elaboración rigurosa de contratos, demandas, descargos y solicitudes.</p>
-        </div>
-        <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
-          <h4 class="font-semibold text-amber-400 mb-1">Cobertura Nacional</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">Asesoría presencial y virtual con alcance en toda Colombia.</p>
-        </div>
-        <div class="bg-slate-800/80 p-5 rounded-xl border border-slate-700">
-          <h4 class="font-semibold text-amber-400 mb-1">Confidencialidad</h4>
-          <p class="text-xs text-slate-300 leading-relaxed">Manejo estricto y reservado de toda su información legal.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Sección de Contacto -->
-  <section id="contacto" class="py-20 px-4 sm:px-6 max-w-4xl mx-auto text-center">
-    <span class="text-amber-600 font-semibold text-xs uppercase tracking-widest">Canales de Atención</span>
-    <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mt-2 mb-4">¿Necesita asesoría legal hoy?</h2>
-    <p class="text-slate-600 text-sm sm:text-base mb-10 max-w-xl mx-auto">
-      Contáctenos directamente a través de nuestros canales oficiales para evaluar su caso y brindarle el acompañamiento adecuado.
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
-      <!-- Tarjeta WhatsApp (REEMPLAZA 573000000000) -->
-      <a href="https://wa.me."
-         target="_blank" rel="noopener noreferrer"
-         class="bg-white p-6 rounded-2xl border border-slate-200 hover:border-emerald-500 shadow-sm transition group">
-        <div class="text-emerald-600 font-bold text-lg mb-1 group-hover:underline">Atención por WhatsApp</div>
+      <div class="mini-grid">
+        <div class="mini-card">
+          <h4>Atención Directa</h4>
